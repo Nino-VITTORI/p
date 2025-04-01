@@ -1,1 +1,2967 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nino Vittori | Portfolio</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Variables et reset */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e67e22;
+            --light: #ecf0f1;
+            --dark: #1a252f;
+            --text: #333;
+            --transition: all 0.3s ease;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: var(--light);
+            transition: background-color 0.3s ease;
+        }
+
+        /* Mode sombre */
+        body.dark-mode {
+            --primary: #1a252f;
+            --secondary: #2980b9;
+            --accent: #d35400;
+            --light: #2c3e50;
+            --dark: #ecf0f1;
+            --text: #f1f1f1;
+            background-color: var(--light);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            margin: 1rem 0;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--secondary);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--accent);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+
+        section {
+            padding: 5rem 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* Header et navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: var(--primary);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--light);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            font-weight: 600;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Bouton thème */
+        .theme-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 999;
+            background-color: var(--primary);
+            color: var(--light);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* Section Accueil */
+        #accueil {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/api/placeholder/1920/1080') no-repeat center center/cover;
+            color: #fff;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .profile-container {
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--accent);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        .pulse {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            opacity: 0.6;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.3;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1s forwards 0.5s;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--accent);
+        }
+
+        .hero-description {
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            color: var(--light);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+
+        /* Styles pour la section parcours scolaire */
+        .timeline-education {
+            position: relative;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            width: 6px;
+            background-color: var(--secondary);
+            top: 0;
+            bottom: 0;
+            left: 120px;
+            margin-left: -3px;
+            border-radius: 10px;
+        }
+
+        .timeline-item-edu {
+            position: relative;
+            margin-bottom: 50px;
+            padding-left: 150px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            left: 117px;
+            top: 15px;
+            margin-left: -12.5px;
+            z-index: 1;
+            box-shadow: 0 0 0 4px rgba(230, 126, 34, 0.3);
+        }
+
+        .timeline-date-edu {
+            position: absolute;
+            left: 0;
+            top: 15px;
+            width: 100px;
+            text-align: right;
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .timeline-content-edu {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .timeline-content-edu:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-content-edu h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .education-badge {
+            display: inline-block;
+            background-color: var(--accent);
+            color: #fff;
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        .education-detail {
+            margin-top: 0.5rem;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+
+        .education-detail i {
+            margin-right: 0.5rem;
+        }
+
+        .education-detail.current {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Section formation */
+        .formation-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .formation-img {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .formation-img img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .formation-content {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .formation-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .parcours-cards {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+            gap: 1.5rem;
+        }
+
+        .parcours-card {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--box-shadow);
+            flex: 1;
+            min-width: 250px;
+            transition: var(--transition);
+            border-top: 5px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .parcours-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            transform: translateX(-100%);
+            transition: var(--transition);
+        }
+
+        .parcours-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .parcours-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .parcours-card.active {
+            border-top: 5px solid var(--accent);
+            transform: scale(1.05);
+        }
+
+        .parcours-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .parcours-card p {
+            color: var(--text);
+        }
+
+        .stages-info {
+            margin-top: 2rem;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--box-shadow);
+        }
+
+        .stages-info h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .stages-list {
+            list-style-type: none;
+        }
+
+        .stages-list li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .stages-list li::before {
+            content: "•";
+            color: var(--accent);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -0.5rem;
+        }
+
+        /* Section projets académiques */
+        .projects-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            gap: 0.5rem;
+        }
+
+        .filter-btn {
+            background-color: transparent;
+            border: 2px solid var(--secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            color: var(--secondary);
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--secondary);
+            color: #fff;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-img img {
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-tag {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: #fff;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-desc {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            flex-grow: 1;
+        }
+
+        .project-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+            margin-top: auto;
+        }
+
+        .project-footer span {
+            font-size: 0.8rem;
+            color: #777;
+        }
+
+        .project-btn {
+            background-color: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .project-btn:hover {
+            background-color: var(--secondary);
+        }
+
+        .project-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .project-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 1000px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+            transform: translateY(50px);
+            transition: var(--transition);
+        }
+
+        .project-modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        .modal-header {
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 1rem;
+        }
+
+        .modal-img {
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 300px;
+        }
+
+        .modal-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-value {
+            color: var(--text);
+        }
+
+        /* Section projets associatifs */
+        .association-section {
+            margin-bottom: 3rem;
+        }
+
+        .association-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .association-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-right: 1rem;
+        }
+
+        .association-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        .association-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 2rem;
+        }
+
+        .association-img {
+            height: 250px;
+        }
+
+        .association-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .association-content {
+            padding: 1.5rem;
+        }
+
+        .association-event {
+            margin-bottom: 1.5rem;
+        }
+
+        .association-event h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .association-event h4 i {
+            color: var(--accent);
+            margin-right: 0.5rem;
+        }
+
+        /* Section expériences professionnelles */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: "";
+            position: absolute;
+            width: 6px;
+            background-color: var(--secondary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 10px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item::after {
+            content: "";
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            top: 15px;
+            right: -12px;
+            z-index: 1;
+            box-shadow: 0 0 0 4px rgba(230, 126, 34, 0.3);
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        .right::after {
+            left: -12px;
+        }
+
+        .timeline-content {
+            background-color: #fff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-logo {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-logo img {
+            height: 60px;
+            max-width: 200px;
+            object-fit: contain;
+        }
+
+        .timeline-date {
+            background-color: var(--secondary);
+            color: #fff;
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-desc {
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+
+        /* Section activités extra-scolaires */
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .activity-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .activity-img {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .activity-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .activity-card:hover .activity-img img {
+            transform: scale(1.1);
+        }
+
+        .activity-icon {
+            position: absolute;
+            bottom: -25px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .activity-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .activity-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .activity-desc {
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+
+        /* Section contact */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 1.2rem;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .contact-text {
+            color: var(--text);
+        }
+
+        .contact-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            color: var(--primary);
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .btn-submit {
+            background-color: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-submit:hover {
+            background-color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            margin-right: 1rem;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        /* Success message */
+        .success-message {
+            background-color: rgba(46, 204, 113, 0.1);
+            border: 1px solid #2ecc71;
+            border-radius: 5px;
+            padding: 1rem;
+            margin-top: 1rem;
+            text-align: center;
+            color: #2ecc71;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .success-message i {
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Form error */
+        .form-control.error {
+            border-color: #e74c3c;
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nino Vittori | Portfolio</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Variables et reset */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e67e22;
+            --light: #ecf0f1;
+            --dark: #1a252f;
+            --text: #333;
+            --transition: all 0.3s ease;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: var(--light);
+            transition: background-color 0.3s ease;
+        }
+
+        /* Mode sombre */
+        body.dark-mode {
+            --primary: #1a252f;
+            --secondary: #2980b9;
+            --accent: #d35400;
+            --light: #2c3e50;
+            --dark: #ecf0f1;
+            --text: #f1f1f1;
+            background-color: var(--light);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            margin: 1rem 0;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--secondary);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--accent);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+
+        section {
+            padding: 5rem 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* Header et navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: var(--primary);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--light);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            font-weight: 600;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Bouton thème */
+        .theme-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 999;
+            background-color: var(--primary);
+            color: var(--light);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* Section Accueil */
+        #accueil {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/api/placeholder/1920/1080') no-repeat center center/cover;
+            color: #fff;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .profile-container {
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--accent);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        .pulse {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            opacity: 0.6;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.3;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1s forwards 0.5s;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--accent);
+        }
+
+        .hero-description {
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            color: var(--light);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+
+        /* Styles pour la section parcours scolaire */
+        .timeline-education {
+            position: relative;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            width: 6px;
+            background-color: var(--secondary);
+            top: 0;
+            bottom: 0;
+            left: 120px;
+            margin-left: -3px;
+            border-radius: 10px;
+        }
+
+        .timeline-item-edu {
+            position: relative;
+            margin-bottom: 50px;
+            padding-left: 150px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            left: 117px;
+            top: 15px;
+            margin-left: -12.5px;
+            z-index: 1;
+            box-shadow: 0 0 0 4px rgba(230, 126, 34, 0.3);
+        }
+
+        .timeline-date-edu {
+            position: absolute;
+            left: 0;
+            top: 15px;
+            width: 100px;
+            text-align: right;
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .timeline-content-edu {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .timeline-content-edu:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-content-edu h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .education-badge {
+            display: inline-block;
+            background-color: var(--accent);
+            color: #fff;
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        .education-detail {
+            margin-top: 0.5rem;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+
+        .education-detail i {
+            margin-right: 0.5rem;
+        }
+
+        .education-detail.current {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Section formation */
+        .formation-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .formation-img {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .formation-img img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .formation-content {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .formation-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .parcours-cards {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+            gap: 1.5rem;
+        }
+
+        .parcours-card {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--box-shadow);
+            flex: 1;
+            min-width: 250px;
+            transition: var(--transition);
+            border-top: 5px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .parcours-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            transform: translateX(-100%);
+            transition: var(--transition);
+        }
+
+        .parcours-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .parcours-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .parcours-card.active {
+            border-top: 5px solid var(--accent);
+            transform: scale(1.05);
+        }
+
+        .parcours-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .parcours-card p {
+            color: var(--text);
+        }
+
+        .stages-info {
+            margin-top: 2rem;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--box-shadow);
+        }
+
+        .stages-info h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .stages-list {
+            list-style-type: none;
+        }
+
+        .stages-list li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .stages-list li::before {
+            content: "•";
+            color: var(--accent);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -0.5rem;
+        }
+
+        /* Section projets académiques */
+        .projects-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            gap: 0.5rem;
+        }
+
+        .filter-btn {
+            background-color: transparent;
+            border: 2px solid var(--secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            color: var(--secondary);
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--secondary);
+            color: #fff;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-img img {
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-tag {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: #fff;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-desc {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            flex-grow: 1;
+        }
+
+        .project-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+            margin-top: auto;
+        }
+
+        .project-footer span {
+            font-size: 0.8rem;
+            color: #777;
+        }
+
+        .project-btn {
+            background-color: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .project-btn:hover {
+            background-color: var(--secondary);
+        }
+
+        .project-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .project-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 1000px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+            transform: translateY(50px);
+            transition: var(--transition);
+        }
+
+        .project-modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        .modal-header {
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 1rem;
+        }
+
+        .modal-img {
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 300px;
+        }
+
+        .modal-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-value {
+            color: var(--text);
+        }
+
+        /* Section projets associatifs */
+        .association-section {
+            margin-bottom: 3rem;
+        }
+
+        .association-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .association-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-right: 1rem;
+        }
+
+        .association-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        .association-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 2rem;
+        }
+
+        .association-img {
+            height: 250px;
+        }
+
+        .association-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .association-content {
+            padding: 1.5rem;
+        }
+
+        .association-event {
+            margin-bottom: 1.5rem;
+        }
+
+        .association-event h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .association-event h4 i {
+            color: var(--accent);
+            margin-right: 0.5rem;
+        }
+
+        /* Section expériences professionnelles */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: "";
+            position: absolute;
+            width: 6px;
+            background-color: var(--secondary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 10px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item::after {
+            content: "";
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            top: 15px;
+            right: -12px;
+            z-index: 1;
+            box-shadow: 0 0 0 4px rgba(230, 126, 34, 0.3);
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        .right::after {
+            left: -12px;
+        }
+
+        .timeline-content {
+            background-color: #fff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-logo {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-logo img {
+            height: 60px;
+            max-width: 200px;
+            object-fit: contain;
+        }
+
+        .timeline-date {
+            background-color: var(--secondary);
+            color: #fff;
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-desc {
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+
+        /* Section activités extra-scolaires */
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .activity-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .activity-img {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .activity-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .activity-card:hover .activity-img img {
+            transform: scale(1.1);
+        }
+
+        .activity-icon {
+            position: absolute;
+            bottom: -25px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .activity-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .activity-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .activity-desc {
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+
+        /* Section contact */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 1.2rem;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .contact-text {
+            color: var(--text);
+        }
+
+        .contact-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            color: var(--primary);
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .btn-submit {
+            background-color: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-submit:hover {
+            background-color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            margin-right: 1rem;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        /* Success message */
+        .success-message {
+            background-color: rgba(46, 204, 113, 0.1);
+            border: 1px solid #2ecc71;
+            border-radius: 5px;
+            padding: 1rem;
+            margin-top: 1rem;
+            text-align: center;
+            color: #2ecc71;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .success-message i {
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Form error */
+        .form-control.error {
+            border-color: #e74c3c;
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .footer-text {
+            margin-bottom: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links li {
+            margin: 0 1rem;
+        }
+
+        .footer-links a {
+            color: var(--light);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item::after {
+                left: 19px;
+            }
+
+            .left, .right {
+                left: 0;
+            }
+            
+            /* Responsive Timeline Education */
+            .timeline-line {
+                left: 60px;
+            }
+            
+            .timeline-item-edu {
+                padding-left: 90px;
+            }
+            
+            .timeline-dot {
+                left: 57px;
+            }
+            
+            .timeline-date-edu {
+                width: 50px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .menu-btn {
+                display: block;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 1rem;
+                display: none;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 0.5rem 0;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .parcours-cards {
+                flex-direction: column;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .activities-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation pour les modals */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-content {
+            animation: slideUp 0.5s forwards;
+        }
+
+        .project-modal {
+            animation: fadeIn 0.3s forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Bouton thème -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">Nino Vittori</div>
+            <button class="menu-btn" id="menuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#parcours">Parcours scolaire</a></li>
+                <li><a href="#formation">Formation</a></li>
+                <li><a href="#projets">Projets académiques</a></li>
+                <li><a href="#associatif">Projets associatifs</a></li>
+                <li><a href="#experiences">Expériences</a></li>
+                <li><a href="#activites">Activités</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Section Accueil -->
+    <section id="accueil">
+        <div class="profile-container">
+            <div class="pulse"></div>
+            <img src="/api/placeholder/400/400" alt="Nino Vittori" class="profile-img">
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Nino Vittori</h1>
+            <h2 class="hero-subtitle">Commerce & Événementiel</h2>
+            <div class="hero-description">
+                <p>Bienvenue sur mon portfolio !<br>
+                Je suis Nino Vittori, passionné par le commerce et l'univers de l'événementiel. Ce site vous propose un regard sur mon parcours, façonné par des expériences variées et des projets qui m'ont permis de grandir autant sur le plan professionnel que personnel.</p>
+                <p>Curieux et motivé par le challenge, j'aime imaginer des solutions nouvelles, relever des objectifs ambitieux et transformer les idées en actions concrètes.</p>
+                <p>À travers ces pages, je vous partage mes réalisations, mes apprentissages et les ambitions qui m'animent.</p>
+                <p><strong>Bonne visite !</strong></p>
+            </div>
+        </div>
+        <a href="#parcours" class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </section>
+
+    <!-- Section Parcours Scolaire -->
+    <section id="parcours">
+        <div class="container">
+            <h2 class="section-title">Mon parcours scolaire</h2>
+            
+            <div class="timeline-education fade-in">
+                <!-- Ligne chronologique verticale -->
+                <div class="timeline-line"></div>
+                
+                <!-- 2020 -->
+                <div class="timeline-item-edu">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date-edu">2020</div>
+                    <div class="timeline-content-edu">
+                        <h3>Seconde générale</h3>
+                        <p><em>Lycée Clément Marot</em> (Cahors)</p>
+                    </div>
+                </div>
+                
+                <!-- 2021 -->
+                <div class="timeline-item-edu">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date-edu">2021</div>
+                    <div class="timeline-content-edu">
+                        <h3>Première STMG</h3>
+                        <p><em>Lycée Clément Marot</em></p>
+                    </div>
+                </div>
+                
+                <!-- 2022 -->
+                <div class="timeline-item-edu">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date-edu">2022</div>
+                    <div class="timeline-content-edu">
+                        <h3>Terminale STMG - Spécialité Mercatique</h3>
+                        <p><em>Lycée Clément Marot</em></p>
+                        <div class="education-badge">
+                            <i class="fas fa-award"></i> Obtention du baccalauréat avec mention
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 2022-2025 -->
+                <div class="timeline-item-edu">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date-edu">2022 - 2025</div>
+                    <div class="timeline-content-edu">
+                        <h3>BUT Techniques de Commercialisation</h3>
+                        <p><em>IUT de Toulouse</em></p>
+                        <div class="education-detail">
+                            <i class="fas fa-star"></i> Spécialisation en 2e année : Développement de la Relation Client
+                        </div>
+                        <div class="education-detail current">
+                            <i class="fas fa-map-marker-alt"></i> Actuellement en fin de 2e année, en route vers la 3e
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Formation -->
+    <section id="formation">
+        <div class="container">
+            <div class="formation-container">
+                <div class="formation-img">
+                    <img src="/api/placeholder/600/400" alt="IUT Paul Sabatier Toulouse">
+                </div>
+                <div class="formation-content">
+                    <h2 class="formation-title">Ma formation</h2>
+                    <p>Je poursuis actuellement un <strong>Bachelor Universitaire de Technologie (BUT) en Techniques de Commercialisation</strong> à l'<strong>Institut Universitaire de Technologie Paul Sabatier</strong> à Toulouse. Cette formation professionnalisante, d'une durée de trois ans, repose sur trois piliers essentiels : <strong>la vente</strong>, <strong>la communication</strong> et <strong>le marketing</strong>.</p>
+                    
+                    <div class="parcours-cards">
+                        <div class="parcours-card">
+                            <h3>Marketing digital et entrepreneuriat</h3>
+                            <p>Spécialisation orientée vers les stratégies numériques et la création d'entreprise.</p>
+                        </div>
+                        <div class="parcours-card">
+                            <h3>Marketing du point de vente</h3>
+                            <p>Spécialisation centrée sur les techniques de merchandising et la gestion du point de vente.</p>
+                        </div>
+                        <div class="parcours-card active">
+                            <h3>Développement de la relation client</h3>
+                            <p>Spécialisation axée sur les échanges humains, la fidélisation client et la mise en place de relations commerciales durables.</p>
+                        </div>
+                    </div>
+                    
+                    <p>J'ai opté pour la spécialisation <strong>Développement de la Relation Client</strong> en deuxième année, car elle correspond à mon attrait pour les échanges humains, la fidélisation client et la mise en place de relations commerciales durables.</p>
+                    
+                    <div class="stages-info">
+                        <h3>Expérience en entreprise</h3>
+                        <ul class="stages-list">
+                            <li><strong>1er stage :</strong> un mois en première année</li>
+                            <li><strong>2e stage :</strong> deux mois en deuxième année (dans le domaine de l'événementiel sportif)</li>
+                            <li><strong>3e année :</strong> en <strong>alternance</strong>, pour une immersion professionnelle approfondie</li>
+                        </ul>
+                        <p>Cette formation me permet de développer des compétences concrètes tout en consolidant mes connaissances théoriques, dans un environnement dynamique et tourné vers le monde professionnel.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Projets académiques -->
+    <section id="projets">
+        <div class="container">
+            <h2 class="section-title">Projets réalisés en formation</h2>
+            
+            <div class="projects-filter">
+                <button class="filter-btn active" data-filter="all">Tous</button>
+                <button class="filter-btn" data-filter="vente">Vente</button>
+                <button class="filter-btn" data-filter="marketing">Marketing</button>
+                <button class="filter-btn" data-filter="communication">Communication</button>
+            </div>
+            
+            <div class="projects-grid">
+                <!-- Projet 1 -->
+                <div class="project-card fade-in" data-category="vente">
+                    <div class="project-img">
+                        <img src="/api/placeholder/400/300" alt="Maison Berthe Guilhem">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">Vente</span>
+                        <h3 class="project-title">Séminaire de vente et de prospection S1</h3>
+                        <p class="project-desc">Mise en place d'une démarche complète de prospection téléphonique et préparation d'un entretien en face-à-face pour la savonnerie Maison Berthe Guilhem.</p>
+                        <div class="project-footer">
+                            <span>Semestre 1</span>
+                            <button class="project-btn" data-project="projet1">Détails</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projet 2 -->
+                <div class="project-card fade-in" data-category="vente">
+                    <div class="project-img">
+                        <img src="/api/placeholder/400/300" alt="Thermes de Neyrac-les-Bains">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">Négociation</span>
+                        <h3 class="project-title">Séminaire de négociation S2</h3>
+                        <p class="project-desc">Développement de l'activité « Bien-Être » des Thermes de Neyrac-les-Bains en commercialisant leurs offres de soins et de séjours auprès de prospects professionnels.</p>
+                        <div class="project-footer">
+                            <span>Semestre 2</span>
+                            <button class="project-btn" data-project="projet2">Détails</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projet 3 -->
+                <div class="project-card fade-in" data-category="vente">
+                    <div class="project-img">
+                        <img src="/api/placeholder/400/300" alt="Cap Cosmetics / Abiocom">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">Vente</span>
+                        <h3 class="project-title">Entretien de vente S3</h3>
+                        <p class="project-desc">Entretien de vente complet en binôme devant un jury professionnel, mettant en avant les produits Cap Cosmetics du groupe Abiocom spécialisé dans les cosmétiques bio et naturels.</p>
+                        <div class="project-footer">
+                            <span>Semestre 3</span>
+                            <button class="project-btn" data-project="projet3">Détails</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projet 4 -->
+                <div class="project-card fade-in" data-category="marketing">
+                    <div class="project-img">
+                        <img src="/api/placeholder/400/300" alt="Brasserie Caporal">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">Marketing</span>
+                        <h3 class="project-title">SAE Marketing S1</h3>
+                        <p class="project-desc">Analyse du marché de la brasserie artisanale Caporal pour évaluer les opportunités et menaces de son environnement concurrentiel.</p>
+                        <div class="project-footer">
+                            <span>Semestre 1</span>
+                            <button class="project-btn" data-project="projet4">Détails</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projet 5 -->
+                <div class="project-card fade-in" data-category="marketing">
+                    <div class="project-img">
+                        <img src="/api/placeholder/400/300" alt="Kee-Shirt">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">Simulation</span>
+                        <h3 class="project-title">Jeu sérieux « Kee-Shirt » S2</h3>
+                        <p class="project-desc">Simulation d'entreprise dans l'univers du textile avec prise de décisions stratégiques couvrant tous les volets du marketing et de la gestion d'entreprise.</p>
+                        <div class="project-footer">
+                            <span>Semestre 2</span>
+                            <button class="project-btn" data-project="projet5">Détails</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projet 6 -->
+                <div class="project-card fade-in" data-category="marketing">
+                    <div class="project-img">
+                        <img src="/api/placeholder/400/300" alt="ELAUL & SAS CRIS">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">B2B</span>
+                        <h3 class="project-title">SAE Marketing B2B S2</h3>
+                        <p class="project-desc">Étude de l'écosystème de deux entreprises partenaires : ELAUL (fabricant d'équipements électriques de sécurité) et SAS CRIS (spécialiste de la protection incendie).</p>
+                        <div class="project-footer">
+                            <span>Semestre 2</span>
+                            <button class="project-btn" data-project="projet6">Détails</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projet 7 -->
+                <div class="project-card fade-in" data-category="marketing">
+                    <div class="project-img">
+                        <img src="/api/placeholder/400/300" alt="Ella Drive">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">Entrepreneuriat</span>
+                        <h3 class="project-title">SAE Création d'entreprise S3</h3>
+                        <p class="project-desc">Création du concept « Ella Drive », un service VTC sécurisé destiné aux femmes et personnes se sentant vulnérables dans l'espace public.</p>
+                        <div class="project-footer">
+                            <span>Semestre 3</span>
+                            <button class="project-btn" data-project="projet7">Détails</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projet 8 -->
+                <div class="project-card fade-in" data-category="communication">
+                    <div class="project-img">
+                        <img src="/api/placeholder/400/300" alt="Décathlon">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">Communication</span>
+                        <h3 class="project-title">SAE Communication Commerciale S1</h3>
+                        <p class="project-desc">Création d'un support de communication print pour Décathlon, avec analyse du marché et des supports de communication existants.</p>
+                        <div class="project-footer">
+                            <span>Semestre 1</span>
+                            <button class="project-btn" data-project="projet8">Détails</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modals pour chaque projet -->
+            <div class="project-modal" id="modal-projet1">
+                <div class="modal-content">
+                    <button class="modal-close"><i class="fas fa-times"></i></button>
+                    <div class="modal-header">
+                        <h3>Séminaire de vente et de prospection S1</h3>
+                    </div>
+                    <div class="modal-img">
+                        <img src="/api/placeholder/900/500" alt="Maison Berthe Guilhem">
+                    </div>
+                    <div class="modal-info">
+                        <div class="info-item">
+                            <span class="info-label">Contexte</span>
+                            <p class="info-value">L'objectif de ce séminaire était de mettre en place une démarche complète de prospection téléphonique et de préparer le début d'un entretien en face-à-face, à partir de cas réels d'entreprises artisanales (notamment la savonnerie Maison Berthe Guilhem).</p>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Missions réalisées</span>
+                            <ul>
+                                <li>Création d'un fichier de prospection ciblé (base de données de prospects qualifiés)</li>
+                                <li>Conduite d'un appel téléphonique de prospection en utilisant un script adapté (méthode CROC)</li>
+                                <li>Conception d'un guide de découverte client pour mieux qualifier les prospects</li>
+                            </ul>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Compétences développées</span>
+                            <ul>
+                                <li>Maîtrise des techniques de prospection téléphonique</li>
+                                <li>Structuration d'un entretien commercial grâce aux techniques de questionnement</li>
+                                <li>Utilisation d'un langage professionnel adapté</li>
+                                <li>Communication orale et écrite dans un contexte commercial</li>
+                            </ul>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Outils utilisés</span>
+                            <ul>
+                                <li>Fiche de prospection de l'entreprise</li>
+                                <li>Plan d'appel (méthode CROC)</li>
+                                <li>Mail type de prospection</li>
+                                <li>Grille d'analyse des motivations client (méthode SONCAS)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Répétez ce modèle pour les autres projets -->
+            <!-- Modal Projet 2 -->
+            <div class="project-modal" id="modal-projet2">
+                <div class="modal-content">
+                    <button class="modal-close"><i class="fas fa-times"></i></button>
+                    <div class="modal-header">
+                        <h3>Séminaire de négociation S2</h3>
+                    </div>
+                    <div class="modal-img">
+                        <img src="/api/placeholder/900/500" alt="Thermes de Neyrac-les-Bains">
+                    </div>
+                    <div class="modal-info">
+                        <div class="info-item">
+                            <span class="info-label">Contexte</span>
+                            <p class="info-value">L'objectif de ce projet était de développer l'activité « Bien-Être » des Thermes de Neyrac-les-Bains en commercialisant leurs offres de soins et de séjours auprès de prospects professionnels.</p>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Missions réalisées</span>
+                            <ul>
+                                <li>Participation active à un salon professionnel pour promouvoir les offres de l'établissement</li>
+                                <li>Simulation d'un rendez-vous client avec un prospect qualifié (M. Bertrand), intéressé par un séjour bien-être aux thermes</li>
+                                <li>Application de techniques de négociation pour optimiser la conclusion de la vente et proposer des services complémentaires (soins à la carte, hébergement, restauration)</li>
+                                <li>Élaboration d'un argumentaire de vente mettant en avant la qualité de l'offre plutôt que des concessions tarifaires</li>
+                            </ul>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Compétences développées</span>
+                            <ul>
+                                <li>Analyse du marché du bien-être et compréhension des tendances de consommation du secteur</li>
+                                <li>Gestion de la relation client et adaptation de l'offre aux attentes spécifiques</li>
+                                <li>Communication et posture commerciale adaptées à un interlocuteur professionnel exigeant</li>
+                            </ul>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Outils/Méthodes</span>
+                            <ul>
+                                <li>Préparation de la négociation (stratégie BATNA/MESORE)</li>
+                                <li>Méthode de vente SONCAS(E) pour cibler les motivations du client</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Projets associatifs -->
+    <section id="associatif">
+        <div class="container">
+            <h2 class="section-title">Projets associatifs</h2>
+            
+            <div class="association-section">
+                <div class="association-header">
+                    <i class="fas fa-users association-icon"></i>
+                    <h3 class="association-title">Bureau des Étudiants (BDE)</h3>
+                </div>
+                
+                <div class="association-card fade-in">
+                    <div class="association-img">
+                        <img src="/api/placeholder/800/400" alt="Soirée d'intégration BDE">
+                    </div>
+                    <div class="association-content">
+                        <div class="association-event">
+                            <h4><i class="fas fa-glass-cheers"></i> Soirée d'intégration</h4>
+                            <p>Organisation de la soirée d'accueil des nouveaux étudiants de 1ère année. Mise en place d'un système de parrainage où chaque nouvel étudiant était accompagné par un étudiant de 2ème ou 3ème année pour faciliter son intégration. L'événement a rassemblé plus de 200 participants et a contribué à créer un esprit de cohorte dès la rentrée.</p>
+                        </div>
+                        
+                        <div class="association-event">
+                            <h4><i class="fas fa-hiking"></i> Week-end d'intégration</h4>
+                            <p>Co-organisation d'un week-end d'intégration en collaboration avec l'équipe BDE de Tech de Co Bayonne. Cet événement, aboutissement d'un travail de préparation de 6 mois, a réuni plus de 300 étudiants. La logistique a inclus la coordination de nombreux prestataires (DJ, photographe, transport, hébergement, restauration, animations, etc.) pour un budget d'environ 40 000€. Ce projet ambitieux a été une expérience très enrichissante en termes de gestion d'événement et de travail d'équipe sous pression.</p>
+                        </div>
+                        
+                        <div class="association-event">
+                            <h4><i class="fas fa-futbol"></i> Création de l'équipe sportive « Tech de Co »</h4>
+                            <p>Souhaitant ajouter une dimension sportive aux activités du BDE, nous avons créé une équipe de football aux couleurs de l'école. Cela a impliqué la conception d'une campagne de recrutement de joueurs (affiches, communication interne), l'établissement d'un partenariat avec un complexe sportif pour disposer d'un terrain d'entraînement, l'allocation d'un budget pour une buvette lors des matchs, et la recherche d'équipes adverses pour organiser des rencontres amicales régulières.</p>
+                        </div>
+                        
+                        <div class="association-event">
+                            <h4><i class="fas fa-handshake"></i> Recherche de partenariats</h4>
+                            <p>Prospection et négociation de partenariats afin d'offrir aux étudiants des avantages exclusifs. Nous avons ainsi convaincu de nombreux commerces locaux de proposer des réductions aux étudiants (exemples : une <strong>tatoueuse</strong> et une <strong>prothésiste ongulaire</strong> pour des tarifs préférentiels, des fast-foods et bars partenaires offrant des remises). Nous avons également mis en place une collaboration notable avec <strong>Red Bull</strong>, permettant à nos étudiants de participer à des événements spéciaux tels que le <strong>Red Bull Basement</strong> (concours d'entrepreneuriat étudiant), renforçant ainsi le dynamisme de la vie associative.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="association-section">
+                <div class="association-header">
+                    <i class="fas fa-briefcase association-icon"></i>
+                    <h3 class="association-title">TC Partners (projet transverse)</h3>
+                </div>
+                
+                <div class="association-card fade-in">
+                    <div class="association-img">
+                        <img src="/api/placeholder/800/400" alt="TC Partners">
+                    </div>
+                    <div class="association-content">
+                        <p>L'association <strong>TC Partners</strong> a pour vocation de rapprocher les étudiants du BUT Tech de Co avec les acteurs du monde professionnel, en organisant des événements concrets favorisant l'échange, le partage d'expérience et l'insertion professionnelle.</p>
+                        <p>Engagé activement dans cette initiative, j'ai contribué à l'organisation de plusieurs actions à fort impact, tant pour les étudiants que pour les professionnels partenaires.</p>
+                        
+                        <div class="association-event">
+                            <h4><i class="fas fa-briefcase"></i> Organisation de job datings</h4>
+                            <p>Mise en place d'événements de recrutement ciblés permettant aux étudiants de rencontrer des entreprises locales à la recherche de stagiaires ou d'alternants. Mon rôle a consisté à contacter les entreprises, assurer la logistique (créneaux de passage, accueil, communication interne) et accompagner les étudiants dans la préparation de leurs entretiens.</p>
+                        </div>
+                        
+                        <div class="association-event">
+                            <h4><i class="fas fa-graduation-cap"></i> Création et animation des "Soirées tuteurs"</h4>
+                            <p>Ces événements ont réuni d'anciens maîtres de stage, des alumni et des étudiants actuels dans un cadre convivial, favorisant l'échange d'expériences autour de l'alternance, du stage ou de l'intégration professionnelle post-BUT. J'ai participé à la préparation des soirées, à la sélection des intervenants et à la modération de certains temps d'échange.</p>
+                        </div>
+                        
+                        <div class="association-event">
+                            <h4><i class="fas fa-award"></i> Compétences développées</h4>
+                            <ul>
+                                <li><strong>Organisation d'événements</strong> professionnels : logistique, gestion des invitations, animation des échanges</li>
+                                <li><strong>Relationnel avec des profils variés</strong> : professionnels, recruteurs, enseignants, étudiants</li>
+                                <li><strong>Écoute active et communication</strong> : compréhension des attentes des recruteurs et valorisation des parcours étudiants</li>
+                                <li><strong>Engagement associatif</strong> : travail d'équipe, autonomie et gestion de projet dans un cadre extra-scolaire</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="association-event">
+                            <h4><i class="fas fa-lightbulb"></i> Ce que cela m'a apporté</h4>
+                            <p>Ces expériences m'ont permis de <strong>mieux cerner les attentes du monde professionnel</strong>, en particulier en matière de recrutement de jeunes talents. Elles m'ont aussi donné l'occasion de <strong>jouer un rôle utile pour mes camarades</strong>, en leur permettant d'accéder à des opportunités concrètes et en les aidant à se sentir plus à l'aise face aux recruteurs. J'ai pris conscience de l'importance de <strong>l'intermédiation</strong> entre école et entreprise, et de la valeur des réseaux que l'on peut construire dès la formation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Expériences professionnelles -->
+    <section id="experiences">
+        <div class="container">
+            <h2 class="section-title">Expériences professionnelles</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item left fade-in">
+                    <div class="timeline-content">
+                        <div class="timeline-logo">
+                            <img src="/api/placeholder/200/100" alt="Logo Décathlon">
+                        </div>
+                        <span class="timeline-date">Stage 1ère année</span>
+                        <h3 class="timeline-title">Stage en vente chez Décathlon</h3>
+                        <p class="timeline-desc">En tant que stagiaire conseiller de vente chez <strong>Décathlon</strong>, j'ai intégré une équipe rayon et participé activement au quotidien du magasin. Mes missions ont consisté à accueillir et conseiller la clientèle sur les produits sportifs, à gérer la mise en rayon et l'étiquetage des articles pour assurer la disponibilité des stocks, et à contribuer à l'organisation d'animations commerciales (démonstrations de produits, mini-événements sportifs en magasin). Cette expérience m'a permis de développer un fort sens du service client et du travail en équipe, ainsi qu'une meilleure compréhension de la gestion opérationnelle d'un point de vente dans un grand groupe de distribution.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item right fade-in">
+                    <div class="timeline-content">
+                        <div class="timeline-logo">
+                            <img src="/api/placeholder/200/100" alt="Logo Agence immobilière">
+                        </div>
+                        <span class="timeline-date">Stage 2ème année</span>
+                        <h3 class="timeline-title">Stage en agence immobilière</h3>
+                        <p class="timeline-desc">J'ai également effectué un stage au sein d'une agence immobilière, en tant qu'assistant commercial. Aux côtés des conseillers immobiliers, j'ai pris part à l'organisation et à la réalisation de visites de biens (appartements et maisons), à la prospection de nouveaux clients vendeurs et acquéreurs (phoning, porte-à-porte, relances), et au suivi administratif des dossiers (constitution des dossiers de vente, vérification des documents réglementaires, mise à jour des annonces en ligne). Cette immersion dans le secteur immobilier m'a formé aux techniques de vente consultative propres à ce domaine, à la rigueur administrative nécessaire pour les transactions, et à l'importance de la relation de confiance avec la clientèle dans des projets de vie engageants.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Activités extra-scolaires -->
+    <section id="activites">
+        <div class="container">
+            <h2 class="section-title">Activités extra-scolaires</h2>
+            
+            <div class="activities-grid">
+                <div class="activity-card fade-in">
+                    <div class="activity-img">
+                        <img src="/api/placeholder/400/300" alt="Sport - Street lifting">
+                        <div class="activity-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                    </div>
+                    <div class="activity-content">
+                        <h3 class="activity-title">Sport</h3>
+                        <p class="activity-desc">Le <strong>sport</strong> occupe une place centrale dans ma routine. Je pratique la <strong>musculation</strong> trois fois par semaine, en me concentrant plus particulièrement sur le <strong>street lifting</strong>, une discipline qui combine des mouvements de musculation classiques (tractions, dips, muscle-ups) avec des charges additionnelles, dans une logique de force et de performance au poids de corps. En complément, je cours également <strong>trois fois par semaine</strong>, ce qui me permet de travailler mon endurance et de me vider l'esprit.<br>Le sport est pour moi bien plus qu'une activité physique : c'est un <strong>véritable moteur de bien-être et de rigueur</strong>.</p>
+                    </div>
+                </div>
+                
+                <div class="activity-card fade-in">
+                    <div class="activity-img">
+                        <img src="/api/placeholder/400/300" alt="Voyage au Maroc">
+                        <div class="activity-icon">
+                            <i class="fas fa-plane"></i>
+                        </div>
+                    </div>
+                    <div class="activity-content">
+                        <h3 class="activity-title">Voyage</h3>
+                        <p class="activity-desc">J'ai eu l'opportunité de voyager au <strong>Maroc</strong>, une expérience qui a grandement élargi mes horizons. Ce séjour immersif au cœur d'une culture différente m'a apporté une ouverture d'esprit accrue et une adaptation rapide à des environnements nouveaux. J'ai pu y développer ma capacité à communiquer avec des personnes d'origines variées et à apprécier la richesse de perspectives différentes -- des atouts précieux dans un contexte professionnel de plus en plus internationalisé.</p>
+                    </div>
+                </div>
+                
+                <div class="activity-card fade-in">
+                    <div class="activity-img">
+                        <img src="/api/placeholder/400/300" alt="Jeux de cartes - Belote">
+                        <div class="activity-icon">
+                            <i class="fas fa-chess-board"></i>
+                        </div>
+                    </div>
+                    <div class="activity-content">
+                        <h3 class="activity-title">Social</h3>
+                        <p class="activity-desc">À côté de cela, je cultive aussi des moments de <strong>détente et de lien social</strong>, notamment à travers les <strong>jeux de cartes</strong>, et plus précisément la <strong>belote</strong>. Chaque week-end, je retrouve trois amis autour d'un café pour part
+
+     
